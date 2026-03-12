@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Diet Plan – Diet Clinic</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <style>
+    /* ═══════════════ SCREEN STYLES ═══════════════ */
+    body {
+      font-family: "Outfit", sans-serif !important;
+      margin: 0;
+      padding: 0;
+      color: #1C1C25;
+      background: #fff;
+    }
+
+    h2 {
+      font-size: 32px;
+    }
+
+    h3 {
+      font-size: 28px;
+    }
+
+    label {
+      font-weight: 500;
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+
+    .btn {
+      font-size: 15px;
+      font-weight: 500;
+      border: 2px solid;
+      border-radius: 50px;
+      padding: 8px 20px;
+    }
+
+    .btn-primary {
+      border-color: #0A64BC !important;
+      background: #0A64BC !important;
+      color: #fff !important;
+    }
+
+    .btn-primary:hover {
+      background: #fff !important;
+      color: #0A64BC !important;
+    }
+
+    .btn-secondary {
+      border-color: #1C1C25 !important;
+      background: #1C1C25 !important;
+      color: #fff !important;
+      min-width: 120px;
+    }
+
+    .btn-danger {
+      border-color: #dc3545 !important;
+      background: #dc3545 !important;
+      color: #fff !important;
+      height: 30px;
+      width: 30px;
+      padding: 0;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    /* ═══════════════ PRINT – hidden on screen ═══════════════ */
+    .print_section {
+      display: none;
+    }
+
+    .banner {
+      min-height: 100vh;
+      width: 100%;
+      padding: 40px;
+      background: url('https://drive.google.com/thumbnail?id=1sE91C6yo8sRYlrVUvirfzyh2mbgXc7rE&sz=w10000');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: left;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .client_information {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      width: 100%;
+      max-width: 800px;
+      border: 1px solid #ddd;
+      flex-shrink: 0;
+      border-radius: 8px;
+    }
+
+    .client_information input,
+    .client_information select,
+    .client_information textarea {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px 15px;
+      resize: vertical;
+    }
+
+    .client_information input:focus,
+    .client_information select:focus,
+    .client_information textarea:focus {
+      border-color: #0A64BC;
+      box-shadow: 0 0 5px rgba(10, 100, 188, 0.5);
+      outline: none;
+    }
+
+    .client_information label {
+      font-size: 15px;
+      margin-bottom: 0px;
+    }
+
+    .plan_information {
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #ddd;
+      transform: translateY(-100px);
+    }
+
+    .table {
+      margin: 40px 0px;
+      border: 1px solid #ddd;
+    }
+
+    .table-responsive {
+      overflow-x: visible;
+    }
+
+    .table th {
+      font-size: 16px;
+      font-weight: 600;
+      padding: 12px 15px;
+      line-height: 20px;
+      color: #2d62ba;
+
+    }
+
+    .table input,
+    .table select,
+    .table textarea {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 7px 14px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        /* margin: 0; */
+      }
+
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      body>*:not(.print_section) {
+        display: none !important;
+      }
+
+      /* PAGE WRAPPER */
+      .print_section {
+        display: block !important;
+        /* width: 210mm; */
+        /* padding: 50px; */
+        /* min-height: 297mm; */
+        background: #ffffff;
+        position: relative;
+        font-family: "Outfit", Arial, sans-serif;
+        color: #1C1C25;
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* WATERMARK – simplified, no heavy filters for fast PDF rendering */
+      .ps-watermark {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 300px;
+        object-fit: contain;
+        opacity: 0.09;
+        pointer-events: none;
+        z-index: 0;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .ps-logo-block {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-left: -5px;
+        margin-bottom: 40px;
+      }
+
+      .ps-logo-img {
+        width: 65px;
+        height: 65px;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+
+      .ps-logo-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .ps-brand-name {
+        font-size: 30px;
+        line-height: 30px;
+        font-weight: 700;
+        color: #325c7e;
+        letter-spacing: 2px;
+        margin-bottom: 0px;
+      }
+
+      .ps-brand-tagline {
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 14px;
+        color: #26262e;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 0px;
+      }
+
+      /* CONTACT BLOCK – right */
+      .ps-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+
+      .ps-contact-row {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        color: #444;
+      }
+
+      .ps-ci-texts {
+        text-align: right;
+        font-size: 15px;
+        line-height: 1.45;
+        max-width: 500px;
+      }
+
+      .ps-ci-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        background: #325c7e;
+      }
+
+      .ps-ci-icon svg {
+        width: 17px;
+        height: 17px;
+        fill: #fff;
+      }
+
+      /* PATIENT BLOCK */
+      .ps-patient-block {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        position: relative;
+        z-index: 1;
+        margin-bottom: 20px;
+      }
+
+      .ps-patient-name {
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 600;
+        color: #325c7e;
+        margin-bottom: 4px;
+      }
+
+      .ps-patient-subname {
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: 400;
+        margin-bottom: 4px;
+        color: #3E4250;
+        max-width: 400px;
+      }
+
+      .ps-patient-subname .ps-title {
+        font-weight: 500;
+        color: #24262E;
+      }
+
+      /* DIET CONTENT AREA */
+      .ps-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .ps-diet-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 9pt;
+      }
+
+      .ps-diet-table .ps-col-hdr td {
+        font-weight: 600;
+        font-size: 17px;
+        color: #325c7e;
+        padding: 0px 10px;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .ps-diet-table .ps-meal-hdr td {
+        font-size: 16px;
+        font-weight: 500;
+        color: #222;
+        background: linear-gradient(90deg, #df80b847, #fff);
+        border-left: 4px solid #c7337d94;
+        border-top: 8px solid #fff;
+        border-bottom: none;
+        padding: 5px 10px;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .ps-diet-table .ps-data-row td {
+        padding: 4px 10px;
+        border: none;
+        font-size: 16px;
+        font-weight: 500;
+        vertical-align: top;
+      }
+
+      .ps-diet-table .ps-data-row td:first-child {
+        width: 28%;
+        color: #555;
+      }
+
+      .ps-diet-table .ps-data-row td:last-child {
+        color: #555;
+      }
+
+      .ps-diet-table .ps-spacer td {
+        padding: 3px;
+        border: none;
+      }
+
+      /* SIGNATURE – always at bottom after content, never overlaps */
+      .ps-signature-wrap {
+        display: flex;
+        justify-content: flex-start;
+        position: relative;
+        z-index: 2;
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+      }
+
+      .ps-signature {
+        text-align: left;
+        width: 200px;
+      }
+
+      .ps-sig-space {
+        height: 120px;
+        margin-bottom: 6px;
+      }
+
+      .ps-sig-name {
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 700;
+        color: #325c7e;
+      }
+
+      .ps-sig-role {
+        font-size: 14px;
+        color: #666;
+      }
+    }
+
+    @media screen and (max-width: 991px) {
+      .plan_information {
+        transform: translateY(0);
+        margin-top: 20px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 100%;
+      }
+
+    }
+
+    @media screen and (max-width: 575px) {
+      .banner {
+        padding: 20px;
+      }
+
+      .client_information {
+        padding: 20px;
+      }
+
+      .plan_information {
+        padding: 0px;
+        padding-bottom: 30px;
+        border: 0px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      h3 {
+        font-size: 20px;
+      }
+
+      .btn {
+        font-size: 14px;
+        padding: 6px 18px;
+      }
+
+      .btn-danger {
+        height: 28px;
+        width: 28px;
+        padding: 0;
+        font-size: 14px;
+      }
+
+      .client_information input,
+      .client_information select,
+      .client_information textarea {
+        padding: 8px 10px;
+        font-size: 14px;
+      }
+
+      .table {
+        margin: 20px 0;
+        border: 0px;
+      }
+
+      .table thead {
+        display: none;
+      }
+
+      .table,
+      .table tbody,
+      .table tr,
+      .table td {
+        display: block;
+        width: 100%;
+      }
+
+      .table tr {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        padding: 10px 12px;
+      }
+
+      .table td {
+        border: 0;
+        padding: 24px 0 8px;
+        position: relative;
+      }
+
+      .table td::before {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        font-size: 12px;
+        font-weight: 700;
+        color: #2d62ba;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+
+      .table td:nth-child(1)::before {
+        content: 'Time';
+      }
+
+      .table td:nth-child(2)::before {
+        content: 'Diet Plan';
+      }
+
+      .table td:nth-child(3)::before {
+        content: 'Delete';
+      }
+
+      .table td.text-center {
+        text-align: left !important;
+      }
+
+      .table td.text-center .btn-danger {
+        margin-top: 2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════ SCREEN FORM ═══════════ -->
+
+  <div class="banner">
+    <div class="client_information">
+      <h2 class="mb-sm-3 mb-2">Patient Information</h2>
+      <form id="patientForm" novalidate>
+        <div class="row row-gap-sm-3 row-gap-2">
+          <div class="col-lg-6">
+            <label for="patientName">Name</label>
+            <input type="text" id="patientName" class="form-control" placeholder="Enter patient name" value="John Doe"
+              required>
+            <div class="invalid-feedback">Name is required.</div>
+          </div>
+          <div class="col-lg-6">
+            <label for="patientGender">Gender</label>
+            <select id="patientGender" class="form-select" required>
+              <option value="" disabled>Select gender</option>
+              <option value="Male">Male</option>
+              <option value="Female" selected>Female</option>
+            </select>
+            <div class="invalid-feedback">Gender is required.</div>
+          </div>
+          <div class="col-lg-6">
+            <label for="patientMobile">Mobile No</label>
+            <input type="tel" id="patientMobile" class="form-control" placeholder="Enter mobile number"
+              value="9876543210" required>
+            <div class="invalid-feedback">Mobile number is required.</div>
+          </div>
+          <div class="col-lg-6">
+            <label for="patientAge">Age</label>
+            <input type="number" id="patientAge" class="form-control" placeholder="Enter patient age" min="1" value="30"
+              required>
+            <div class="invalid-feedback">Valid age is required.</div>
+          </div>
+          <div class="col-lg-6">
+            <label for="patientHeight">Height</label>
+            <input type="text" id="patientHeight" class="form-control" placeholder="e.g. 170 cm" value="170 cm">
+          </div>
+          <div class="col-lg-6">
+            <label for="patientWeight">Weight</label>
+            <input type="text" id="patientWeight" class="form-control" placeholder="e.g. 65 kg" value="65 kg">
+          </div>
+          <div class="col-12">
+            <label for="patientAddress">Address</label>
+            <textarea id="patientAddress" class="form-control" rows="2" placeholder="Enter full address"
+              required>Surat, Gujarat</textarea>
+            <div class="invalid-feedback">Address is required.</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="container">
+    <div class="plan_information">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3 class="mb-0">Diet Plan</h3>
+        <button type="button" id="addNewRowBtn" class="btn btn-primary">Add New Row</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead class="table-light">
+            <tr>
+              <th style="width:280px;">Time</th>
+              <th>Diet Plan</th>
+              <th style="width:64px;text-align:center;">Delete</th>
+            </tr>
+          </thead>
+          <tbody id="dietTableBody"></tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-center gap-3">
+        <button class="btn btn-secondary" id="resetBtn">Reset</button>
+        <button type="button" id="printBtn" class="btn btn-primary">Download / Print</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ PRINT SECTION ═══════════ -->
+  <div class="print_section">
+
+    <!-- WATERMARK: full-color logo centered on page -->
+    <img class="ps-watermark" src="https://drive.google.com/thumbnail?id=18jIr60W1zCcwByMZXv9ciqb8A_8Xpi7d&sz=w500"
+      alt="">
+
+    <!-- HEADER: logo left, contacts right -->
+    <div class="ps-logo-block">
+      <img class="ps-logo-img" src="https://drive.google.com/thumbnail?id=18jIr60W1zCcwByMZXv9ciqb8A_8Xpi7d&sz=w500"
+        alt="Fit Iconic Logo">
+      <div class="ps-logo-text">
+        <div class="ps-brand-name">FIT ICONIC</div>
+        <div class="ps-brand-tagline">Fitness center</div>
+      </div>
+    </div>
+    <!-- PATIENT BLOCK -->
+    <div class="ps-patient-block">
+      <div>
+        <div class="ps-patient-name" id="printName">-</div>
+        <div class="ps-patient-subname"><span class="ps-title">Mobile No :</span> <span id="printMobile">-</span></div>
+        <div class="d-flex gap-2">
+          <div class="ps-patient-subname"><span class="ps-title">Gender :</span> <span id="printGender">-</span></div>
+          <div class="ps-patient-subname"><span class="ps-title">Age :</span> <span id="printAge">-</span></div>
+        </div>
+        <div class="d-flex gap-2">
+          <div class="ps-patient-subname"><span class="ps-title">Height :</span> <span id="printHeight">-</span></div>
+          <div class="ps-patient-subname"><span class="ps-title">Weight :</span> <span id="printWeight">-</span></div>
+        </div>
+        <div class="ps-patient-subname"><span class="ps-title">Address :</span> <span id="printAddress">-</span></div>
+      </div>
+      <div class="ps-date" id="printDate"></div>
+    </div>
+
+    <!-- DIET TABLE -->
+    <div class="ps-content">
+      <table class="ps-diet-table" id="printDietTable">
+        <tr class="ps-col-hdr">
+          <td>Serving Time</td>
+          <td>Diet Plan / Sample Menu</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- SIGNATURE: blank space to sign by hand after printing -->
+    <div class="ps-signature-wrap">
+      <div class="ps-signature">
+        <div class="ps-sig-space"></div>
+        <div class="ps-sig-name">Jigisha Viradiya</div>
+        <div class="ps-sig-role">Nutrition Diet &amp; Fitness Expert</div>
+        <div class="ps-sig-role">Zin Zumba Instructor</div>
+      </div>
+    </div>
+
+    <div class="ps-contact">
+      <div class="ps-contact-row">
+        <div class="ps-ci-texts">+91 98259 28378</div>
+        <div class="ps-ci-icon blue">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
+          </svg>
+        </div>
+      </div>
+      <div class="ps-contact-row">
+        <div class="ps-ci-texts">3, Nagnath Socaity, 2nd Floor, Nr. Avalon Business Hub, Ankur School To Ved Road, Aamba
+          Talavadi, Katargam, Surat-395 004
+        </div>
+        <div class="ps-ci-icon">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /print_section -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
+    (function () {
+
+      var dietByMeal = {
+        'Breakfast': [
+          'Warm water with lemon – 1 glass',
+          'Oats with fruits and nuts – 1 bowl',
+          'Poha with vegetables – 1 bowl',
+          'Boiled eggs with whole wheat toast – 2 eggs + 2 slices',
+          'Upma with coconut chutney – 1 bowl',
+          'Idli with sambar – 2 idlis + 1 bowl',
+          'Banana smoothie with chia seeds – 1 glass',
+          'Whole wheat paratha with curd – 1 + 1 cup',
+          'Dalia with milk and honey – 1 bowl',
+          'Vegetable omelette – 2 eggs + veggies'
+        ],
+        'Morning Snack': [
+          'Small banana – 1 fruit',
+          'Apple or pear – 1 fruit',
+          'Mixed nuts (almonds, walnuts) – 1 handful',
+          'Low-fat yogurt / curd – 1 cup',
+          'Roasted chana – 1 small bowl',
+          'Fresh fruit salad – 1 bowl',
+          'Buttermilk with rock salt – 1 glass',
+          'Coconut water – 1 glass',
+          'Rice cakes with peanut butter – 2 pieces',
+          'Cucumber + carrot sticks with hummus – 1 bowl'
+        ],
+        'Lunch': [
+          'Chapati + Dal + Salad – 2 rotis + 1 bowl + 1 bowl',
+          'Brown rice + Rajma curry – 1 bowl + 1 bowl',
+          'Roti + Paneer sabzi + Salad – 2 rotis + 1 bowl + 1 bowl',
+          'Vegetable khichdi with raita – 1 bowl + 1 cup',
+          'Grilled chicken + Steamed rice + Salad – 100g + 1 bowl + 1 bowl',
+          'Dal makhani + Roti + Salad – 1 bowl + 2 rotis + 1 bowl',
+          'Tofu stir-fry + Brown rice – 100g + 1 bowl',
+          'Mixed vegetable pulao with raita – 1 bowl + 1 cup',
+          'Fish curry + Steamed rice – 100g + 1 bowl',
+          'Chole + Steamed rice + Salad – 1 bowl + 1 bowl + 1 bowl'
+        ],
+        'Afternoon Snack': [
+          'Green tea – 1 cup',
+          'Buttermilk – 1 glass',
+          'Apple – 1 fruit',
+          'Roasted makhana – 1 bowl',
+          'Sprouts chaat – 1 bowl',
+          'Low-fat yogurt with berries – 1 cup',
+          'Herbal tea + 2 digestive biscuits',
+          'Boiled sweet corn – 1 cup',
+          'Peanut butter + whole wheat crackers – 1 tbsp + 4 crackers',
+          'Orange or mosambi juice – 1 glass'
+        ],
+        'Dinner': [
+          'Grilled chicken + Vegetable soup – 100g + 1 bowl',
+          'Grilled paneer + Tomato soup – 100g + 1 bowl',
+          'Dal + Roti + Salad – 1 bowl + 2 rotis + 1 bowl',
+          'Baked fish + Steamed vegetables – 100g + 1 bowl',
+          'Egg bhurji + Multigrain roti – 2 eggs + 2 rotis',
+          'Palak soup + Multigrain bread – 1 bowl + 2 slices',
+          'Moong dal khichdi with ghee – 1 bowl',
+          'Tofu + Stir-fried vegetables + Brown rice – 100g + 1 bowl',
+          'Chicken salad with olive oil dressing – 1 bowl',
+          'Vegetable stew + Brown rice – 1 bowl + 1 bowl'
+        ]
+      };
+
+      var mealLabels = ['Breakfast', 'Morning Snack', 'Lunch', 'Afternoon Snack', 'Dinner'];
+
+      var defaultRows = [
+        { meal: 'Breakfast', time: '07:00', dietIndex: 0 },
+        { meal: 'Morning Snack', time: '10:00', dietIndex: 0 },
+        { meal: 'Lunch', time: '13:00', dietIndex: 0 },
+        { meal: 'Afternoon Snack', time: '16:00', dietIndex: 0 },
+        { meal: 'Dinner', time: '19:00', dietIndex: 0 }
+      ];
+
+      var form = document.getElementById('patientForm');
+      var printBtn = document.getElementById('printBtn');
+      var resetBtn = document.getElementById('resetBtn');
+      var addRowBtn = document.getElementById('addNewRowBtn');
+      var dietTableBody = document.getElementById('dietTableBody');
+
+      function buildMealSelect(selectedMeal) {
+        var sel = document.createElement('select');
+        sel.className = 'form-select form-select-sm meal-label-select';
+        mealLabels.forEach(function (label) {
+          var o = document.createElement('option');
+          o.value = label;
+          o.textContent = label;
+          if (label === selectedMeal) o.selected = true;
+          sel.appendChild(o);
+        });
+        return sel;
+      }
+
+      function buildDietSelect(meal, selectedIndex) {
+        var opts = dietByMeal[meal] || dietByMeal['Breakfast'];
+        var sel = document.createElement('select');
+        sel.className = 'form-select form-select-sm diet-select';
+        opts.forEach(function (opt, i) {
+          var o = document.createElement('option');
+          o.value = opt;
+          o.textContent = opt;
+          if (i === (selectedIndex || 0)) o.selected = true;
+          sel.appendChild(o);
+        });
+        return sel;
+      }
+
+      function refreshDietSelect(row, newMeal) {
+        var td2 = row.cells[1];
+        td2.innerHTML = '';
+        td2.appendChild(buildDietSelect(newMeal, 0));
+      }
+
+      function buildRow(cfg) {
+        var row = document.createElement('tr');
+
+        var td1 = document.createElement('td');
+        var mealSel = buildMealSelect(cfg.meal || 'Breakfast');
+        var timeInput = document.createElement('input');
+        timeInput.type = 'time';
+        timeInput.className = 'form-control form-control-sm mt-1';
+        if (cfg.time) timeInput.value = cfg.time;
+        td1.appendChild(mealSel);
+        td1.appendChild(timeInput);
+
+        var td2 = document.createElement('td');
+        td2.appendChild(buildDietSelect(cfg.meal || 'Breakfast', cfg.dietIndex || 0));
+
+        var td3 = document.createElement('td');
+        td3.className = 'text-center';
+        var delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'btn btn-sm btn-danger';
+        delBtn.textContent = '\u2715';
+        td3.appendChild(delBtn);
+
+        row.appendChild(td1);
+        row.appendChild(td2);
+        row.appendChild(td3);
+
+        mealSel.addEventListener('change', function () {
+          refreshDietSelect(row, mealSel.value);
+        });
+        delBtn.addEventListener('click', function () {
+          if (dietTableBody.querySelectorAll('tr').length > 1) {
+            row.remove();
+          } else {
+            alert('At least one row is required.');
+          }
+        });
+        return row;
+      }
+
+      function renderDefaultRows() {
+        dietTableBody.innerHTML = '';
+        defaultRows.forEach(function (cfg) {
+          dietTableBody.appendChild(buildRow(cfg));
+        });
+      }
+      renderDefaultRows();
+
+      addRowBtn.addEventListener('click', function () {
+        dietTableBody.appendChild(buildRow({ meal: 'Breakfast', time: '08:00', dietIndex: 0 }));
+      });
+
+      function getVal(id) {
+        var el = document.getElementById(id);
+        return el ? el.value.trim() : '';
+      }
+
+      function formatTime(t) {
+        if (!t) return '-';
+        var p = t.split(':');
+        var h = Number(p[0]);
+        var m = p[1];
+        return String(h % 12 || 12).padStart(2, '0') + ':' + m + ' ' + (h >= 12 ? 'PM' : 'AM');
+      }
+
+      function formatDate() {
+        var d = new Date();
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        return days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+      }
+
+      function syncPrint() {
+        document.getElementById('printName').textContent = getVal('patientName') || '-';
+        document.getElementById('printGender').textContent = getVal('patientGender') || '-';
+        document.getElementById('printMobile').textContent = getVal('patientMobile') || '-';
+        document.getElementById('printAge').textContent = getVal('patientAge') || '-';
+        document.getElementById('printHeight').textContent = getVal('patientHeight') || '-';
+        document.getElementById('printWeight').textContent = getVal('patientWeight') || '-';
+        document.getElementById('printAddress').textContent = getVal('patientAddress') || '-';
+        document.getElementById('printDate').textContent = formatDate();
+
+        var rows = dietTableBody.querySelectorAll('tr');
+        var sections = {};
+        var order = [];
+
+        rows.forEach(function (row) {
+          var labelSel = row.querySelector('.meal-label-select');
+          var timeInput = row.querySelector('input[type="time"]');
+          var dietSel = row.querySelector('.diet-select');
+          var label = labelSel ? labelSel.value.trim() : 'Breakfast';
+          var timeStr = formatTime(timeInput ? timeInput.value : '');
+          var diet = dietSel ? dietSel.value.trim() : '-';
+          if (!sections[label]) { sections[label] = []; order.push(label); }
+          sections[label].push({ time: timeStr, diet: diet });
+        });
+
+        var table = document.getElementById('printDietTable');
+        table.innerHTML = '<tr class="ps-col-hdr"><td>Serving Time</td><td>Diet Plan / Sample Menu</td></tr>';
+
+        order.forEach(function (label) {
+          var sh = document.createElement('tr');
+          sh.className = 'ps-meal-hdr';
+          sh.innerHTML = '<td colspan="2">' + label + '</td>';
+          table.appendChild(sh);
+
+          sections[label].forEach(function (item) {
+            var dr = document.createElement('tr');
+            dr.className = 'ps-data-row';
+            dr.innerHTML = '<td>' + item.time + '</td><td>' + item.diet + '</td>';
+            table.appendChild(dr);
+          });
+
+          var sp = document.createElement('tr');
+          sp.className = 'ps-spacer';
+          sp.innerHTML = '<td colspan="2"></td>';
+          table.appendChild(sp);
+        });
+      }
+
+      printBtn.addEventListener('click', function () {
+        if (!form.checkValidity()) {
+          form.classList.add('was-validated');
+          form.reportValidity();
+          return;
+        }
+        syncPrint();
+        // Small delay lets browser fully paint before opening print dialog
+        // This avoids blank/slow PDF rendering issues
+        printBtn.disabled = true;
+        printBtn.textContent = 'Preparing…';
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            window.print();
+            printBtn.disabled = false;
+            printBtn.textContent = 'Download / Print';
+          });
+        });
+      });
+
+      resetBtn.addEventListener('click', function () {
+        form.reset();
+        form.classList.remove('was-validated');
+        renderDefaultRows();
+      });
+
+    })();
+  </script>
+
+</body>
+
+</html>
