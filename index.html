@@ -367,6 +367,10 @@
     @media print {
       @page {
         size: A4 portrait;
+        background-image: url("https://drive.google.com/thumbnail?id=18jIr60W1zCcwByMZXv9ciqb8A_8Xpi7d&sz=w500");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 300px 300px;
         /* margin: 0; */
       }
 
@@ -411,9 +415,29 @@
         print-color-adjust: exact !important;
       }
 
-      /* WATERMARK – simplified, no heavy filters for fast PDF rendering */
-      .ps-watermark {
+      /* WATERMARK – repeats on every page including iOS */
+      .print_section::before {
+        content: "";
         position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 300px;
+        background-image: url("https://drive.google.com/thumbnail?id=18jIr60W1zCcwByMZXv9ciqb8A_8Xpi7d&sz=w500");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        opacity: 0.09;
+        pointer-events: none;
+        z-index: 0;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* WATERMARK – simplified, no heavy filters for fast PDF rendering */
+      /* .ps-watermark {
+        position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -425,7 +449,7 @@
         z-index: 0;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-      }
+      } */
 
       .ps-logo-block {
         display: flex;
@@ -925,8 +949,8 @@
     <!-- <img class="pdf_bg_img" src="https://drive.google.com/thumbnail?id=1A2KFz48ZsDE2OvJBXlX9rt5BFr4Xn1iR&sz=w5000" alt="img"> -->
 
     <!-- WATERMARK: full-color logo centered on page -->
-    <img class="ps-watermark app-logo"
-      src="https://drive.google.com/thumbnail?id=18jIr60W1zCcwByMZXv9ciqb8A_8Xpi7d&sz=w500" alt="watermark">
+    <!-- <img class="ps-watermark app-logo"
+      src="https://drive.google.com/thumbnail?id=18jIr60W1zCcwByMZXv9ciqb8A_8Xpi7d&sz=w500" alt="watermark"> -->
 
     <!-- HEADER: logo left, contacts right -->
     <div class="ps-logo-block">
@@ -981,7 +1005,7 @@
       <h6 data-i18n="proteinPowderTitle"></h6>
       <p data-i18n="proteinPowderDesc"></p>
     </div>
-    
+
     <!-- SIGNATURE: blank space to sign by hand after printing -->
     <div class="ps-signature-wrap">
       <div class="ps-signature">
