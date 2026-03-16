@@ -323,6 +323,26 @@
       gap: 10px;
     }
 
+    .check_box {
+      margin-left: 24px;
+      gap: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .check_box input {
+      width: 25px;
+      height: 25px;
+      margin: 0px;
+    }
+
+    .check_box label {
+      font-size: 16px;
+      font-weight: 500;
+      color: #3E4250;
+      margin-bottom: 0px;
+    }
+
     .home_subtitle span {
       display: block;
       width: 5px;
@@ -347,7 +367,7 @@
     @media print {
       @page {
         size: A4 portrait;
-        margin: 0;
+        /* margin: 0; */
       }
 
       html,
@@ -363,7 +383,7 @@
         display: none !important;
       }
 
-      .pdf_bg_img {
+      /* .pdf_bg_img {
         position: fixed;
         top: -2mm;
         left: -2mm;
@@ -376,14 +396,14 @@
         z-index: 0;
         opacity: 0.1;
         pointer-events: none;
-      }
+      } */
 
       /* PAGE WRAPPER */
       .print_section {
         display: block !important;
         background: #ffffff;
         position: relative;
-        padding: 12mm;
+        /* padding: 12mm; */
         font-family: "Outfit", Arial, sans-serif;
         color: #1C1C25;
         box-sizing: border-box;
@@ -575,10 +595,32 @@
         border: none;
       }
 
+      .check_box_content {
+        margin: 20px 0;
+        padding: 15px;
+        border: 1px solid #c7337d94;
+        border-radius: 8px;
+        background: #fff0f5;
+      }
+
+      .check_box_content h6 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #c7337d;
+        margin-bottom: 5px;
+      }
+
+      .check_box_content p {
+        font-size: 15px;
+        font-weight: 500;
+        color: #555;
+        margin-bottom: 0px;
+      }
+
       /* SIGNATURE – always at bottom after content, never overlaps */
       .ps-signature-wrap {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         position: relative;
         z-index: 2;
         page-break-inside: avoid;
@@ -586,7 +628,7 @@
       }
 
       .ps-signature {
-        text-align: right;
+        text-align: left;
         width: 200px;
       }
 
@@ -628,13 +670,14 @@
       .diet_information {
         padding: 15px 0px;
       }
+
       .common-card {
         padding: 15px;
         border-radius: 10px;
       }
 
       .table-responsive {
-       padding: 0px 15px;
+        padding: 0px 15px;
       }
 
       .languageLabel {
@@ -738,8 +781,8 @@
     <div class="large-container">
       <div class="header_block">
         <div class="site-brand">
-          <img class="app-logo"
-            src="https://drive.google.com/thumbnail?id=18jIr60W1zCcwByMZXv9ciqb8A_8Xpi7d&sz=w500" alt="Fit Iconic Logo">
+          <img class="app-logo" src="https://drive.google.com/thumbnail?id=18jIr60W1zCcwByMZXv9ciqb8A_8Xpi7d&sz=w500"
+            alt="Fit Iconic Logo">
           <div>
             <p class="title" data-i18n="brandTitle">FIT ICONIC</p>
             <p class="subtitle" data-i18n="brandSubtitle">Fit Iconic Fitness center</p>
@@ -750,6 +793,7 @@
           <select class="form-select" id="languageSelect" aria-label="Language selector">
             <option value="en" data-i18n="langEnglish">English</option>
             <option value="gu" data-i18n="langGujarati">ગુજરાતી</option>
+            <option value="auto" data-i18n="langAuto">Auto</option>
           </select>
         </div>
       </div>
@@ -828,13 +872,11 @@
             </div>
             <div class="col-lg-6">
               <label for="patientIdealWeight">Ideal Weight</label>
-              <input type="text" id="patientIdealWeight" class="form-control" placeholder="e.g. 60 kg"
-                value="">
+              <input type="text" id="patientIdealWeight" class="form-control" placeholder="e.g. 60 kg" value="">
             </div>
             <div class="col-lg-6">
               <label for="patientWeightLoss">Weight Loss</label>
-              <input type="text" id="patientWeightLoss" class="form-control" placeholder="e.g. 5 kg target"
-                value="">
+              <input type="text" id="patientWeightLoss" class="form-control" placeholder="e.g. 5 kg target" value="">
             </div>
             <div class="col-12">
               <label for="patientAddress" data-i18n="addressLabel">Address</label>
@@ -855,15 +897,20 @@
           <table class="table align-middle">
             <thead class="table-light">
               <tr>
-                <th style="width:280px;" data-i18n="timeCol">Time</th>
-                <th data-i18n="dietCol">Diet Plan</th>
-                <th style="width:64px;text-align:center;" data-i18n="deleteCol">Delete</th>
+                <th style="width:280px;">Time</th>
+                <th>Diet Plan</th>
+                <th style="width:64px;text-align:center;">Delete</th>
               </tr>
             </thead>
             <tbody id="dietTableBody"></tbody>
           </table>
+          <div class="check_box form-check">
+            <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+            <label class="form-check-label" for="checkDefault" data-i18n="proteinPowderCheckLabel"></label>
+          </div>
           <div class="d-flex justify-content-center flex-wrap gap-3 my-4">
-            <button type="button" id="addNewRowBtn" class="btn btn-outline-primary" data-i18n="addRowBtn">Add New Row</button>
+            <button type="button" id="addNewRowBtn" class="btn btn-outline-primary" data-i18n="addRowBtn">Add New
+              Row</button>
             <button class="btn btn-outline-primary" id="resetBtn" data-i18n="resetBtn">Reset</button>
             <button type="button" id="printBtn" class="btn btn-primary" data-i18n="printBtn">Download / Print</button>
           </div>
@@ -875,7 +922,7 @@
   <!-- ═══════════ PRINT SECTION ═══════════ -->
   <div class="print_section">
 
-    <img class="pdf_bg_img" src="https://drive.google.com/thumbnail?id=1A2KFz48ZsDE2OvJBXlX9rt5BFr4Xn1iR&sz=w5000" alt="img">
+    <!-- <img class="pdf_bg_img" src="https://drive.google.com/thumbnail?id=1A2KFz48ZsDE2OvJBXlX9rt5BFr4Xn1iR&sz=w5000" alt="img"> -->
 
     <!-- WATERMARK: full-color logo centered on page -->
     <img class="ps-watermark app-logo"
@@ -930,6 +977,11 @@
       </table>
     </div>
 
+    <div class="check_box_content d-none">
+      <h6 data-i18n="proteinPowderTitle"></h6>
+      <p data-i18n="proteinPowderDesc"></p>
+    </div>
+    
     <!-- SIGNATURE: blank space to sign by hand after printing -->
     <div class="ps-signature-wrap">
       <div class="ps-signature">
@@ -968,175 +1020,273 @@
   <script>
     (function () {
 
-      var dietByMeal = {
-        'Breakfast': [
-          'Warm water with lemon – 1 glass',
-          'Oats with fruits and nuts – 1 bowl',
-          'Poha with vegetables – 1 bowl',
-          'Boiled eggs with whole wheat toast – 2 eggs + 2 slices',
-          'Upma with coconut chutney – 1 bowl',
-          'Idli with sambar – 2 idlis + 1 bowl',
-          'Banana smoothie with chia seeds – 1 glass',
-          'Whole wheat paratha with curd – 1 + 1 cup',
-          'Dalia with milk and honey – 1 bowl',
-          'Vegetable omelette – 2 eggs + veggies'
-        ],
-        'Morning Snack': [
-          'Small banana – 1 fruit',
-          'Apple or pear – 1 fruit',
-          'Mixed nuts (almonds, walnuts) – 1 handful',
-          'Low-fat yogurt / curd – 1 cup',
-          'Roasted chana – 1 small bowl',
-          'Fresh fruit salad – 1 bowl',
-          'Buttermilk with rock salt – 1 glass',
-          'Coconut water – 1 glass',
-          'Rice cakes with peanut butter – 2 pieces',
-          'Cucumber + carrot sticks with hummus – 1 bowl'
-        ],
-        'Lunch': [
-          'Chapati + Dal + Salad – 2 rotis + 1 bowl + 1 bowl',
-          'Brown rice + Rajma curry – 1 bowl + 1 bowl',
-          'Roti + Paneer sabzi + Salad – 2 rotis + 1 bowl + 1 bowl',
-          'Vegetable khichdi with raita – 1 bowl + 1 cup',
-          'Grilled chicken + Steamed rice + Salad – 100g + 1 bowl + 1 bowl',
-          'Dal makhani + Roti + Salad – 1 bowl + 2 rotis + 1 bowl',
-          'Tofu stir-fry + Brown rice – 100g + 1 bowl',
-          'Mixed vegetable pulao with raita – 1 bowl + 1 cup',
-          'Fish curry + Steamed rice – 100g + 1 bowl',
-          'Chole + Steamed rice + Salad – 1 bowl + 1 bowl + 1 bowl'
-        ],
-        'Afternoon Snack': [
-          'Green tea – 1 cup',
-          'Buttermilk – 1 glass',
-          'Apple – 1 fruit',
-          'Roasted makhana – 1 bowl',
-          'Sprouts chaat – 1 bowl',
-          'Low-fat yogurt with berries – 1 cup',
-          'Herbal tea + 2 digestive biscuits',
-          'Boiled sweet corn – 1 cup',
-          'Peanut butter + whole wheat crackers – 1 tbsp + 4 crackers',
-          'Orange or mosambi juice – 1 glass'
-        ],
-        'Dinner': [
-          'Grilled chicken + Vegetable soup – 100g + 1 bowl',
-          'Grilled paneer + Tomato soup – 100g + 1 bowl',
-          'Dal + Roti + Salad – 1 bowl + 2 rotis + 1 bowl',
-          'Baked fish + Steamed vegetables – 100g + 1 bowl',
-          'Egg bhurji + Multigrain roti – 2 eggs + 2 rotis',
-          'Palak soup + Multigrain bread – 1 bowl + 2 slices',
-          'Moong dal khichdi with ghee – 1 bowl',
-          'Tofu + Stir-fried vegetables + Brown rice – 100g + 1 bowl',
-          'Chicken salad with olive oil dressing – 1 bowl',
-          'Vegetable stew + Brown rice – 1 bowl + 1 bowl'
-        ]
-      };
+      // ══════════════════════════════════════════════════════
+      //  NEW DIET DATA – 9 meal slots from uploaded plan
+      // ══════════════════════════════════════════════════════
 
-      var dietByMealGu = {
-        'Breakfast': [
-          'લીંબુ સાથે ગરમ પાણી – 1 ગ્લાસ',
-          'ફળ અને સૂકા મેવાં સાથે ઓટ્સ – 1 બાઉલ',
-          'શાકભાજીવાળું પોહા – 1 બાઉલ',
-          'ઉકાળેલા ઇંડા સાથે ઘઉંનો ટોસ્ટ – 2 ઇંડા + 2 સ્લાઇસ',
-          'નાળિયેરની ચટણી સાથે ઉપમા – 1 બાઉલ',
-          'સાંભાર સાથે ઇડલી – 2 ઇડલી + 1 બાઉલ',
-          'ચિયા બીજ સાથે બનાના સ્મૂધી – 1 ગ્લાસ',
-          'દહીં સાથે ઘઉંનો પરોઠો – 1 + 1 કપ',
-          'દૂધ અને મધ સાથે દલિયા – 1 બાઉલ',
-          'વેજીટેબલ ઑમ્લેટ – 2 ઇંડા + શાકભાજી'
-        ],
-        'Morning Snack': [
-          'નાનું કેળું – 1 ફળ',
-          'સફરજન અથવા નાસપતી – 1 ફળ',
-          'મિશ્ર સૂકા મેવાં (બદામ, અખરોટ) – 1 મુઠ્ઠી',
-          'લો-ફેટ દહીં – 1 કપ',
-          'ભૂંજેલા ચણા – 1 નાનો બાઉલ',
-          'તાજું ફળ સલાડ – 1 બાઉલ',
-          'મીઠું સાથે છાસ – 1 ગ્લાસ',
-          'નાળિયેર પાણી – 1 ગ્લાસ',
-          'પીનટ બટર સાથે રાઈસ કેક – 2 પીસ',
-          'કાકડી + ગાજર સ્ટિક્સ સાથે હમસ – 1 બાઉલ'
-        ],
-        'Lunch': [
-          'ચપાતી + દાળ + સલાડ – 2 રોટલી + 1 બાઉલ + 1 બાઉલ',
-          'બ્રાઉન રાઇસ + રાજમા કરી – 1 બાઉલ + 1 બાઉલ',
-          'રોટલી + પનીર શાક + સલાડ – 2 રોટલી + 1 બાઉલ + 1 બાઉલ',
-          'વેજીટેબલ ખીચડી સાથે રાયતું – 1 બાઉલ + 1 કપ',
-          'ગ્રીલ્ડ ચિકન + સ્ટીમ્ડ રાઇસ + સલાડ – 100g + 1 બાઉલ + 1 બાઉલ',
-          'દાળ મખની + રોટલી + સલાડ – 1 બાઉલ + 2 રોટલી + 1 બાઉલ',
-          'ટોફુ સ્ટિર-ફ્રાય + બ્રાઉન રાઇસ – 100g + 1 બાઉલ',
-          'મિક્સ વેજીટેબલ પુલાવ સાથે રાયતું – 1 બાઉલ + 1 કપ',
-          'ફિશ કરી + સ્ટીમ્ડ રાઇસ – 100g + 1 બાઉલ',
-          'છોલે + સ્ટીમ્ડ રાઇસ + સલાડ – 1 બાઉલ + 1 બાઉલ + 1 બાઉલ'
-        ],
-        'Afternoon Snack': [
-          'ગ્રીન ટી – 1 કપ',
-          'છાસ – 1 ગ્લાસ',
-          'સફરજન – 1 ફળ',
-          'ભૂંજેલા મખાણા – 1 બાઉલ',
-          'સ્પ્રાઉટ્સ ચાટ – 1 બાઉલ',
-          'બેરીઝ સાથે લો-ફેટ દહીં – 1 કપ',
-          'હર્બલ ટી + 2 ડાઇજેસ્ટિવ બિસ્કીટ',
-          'ઉકાળેલો સ્વીટ કોર્ન – 1 કપ',
-          'પીનટ બટર + ઘઉંના ક્રેકર્સ – 1 ટેબલસ્પૂન + 4 ક્રેકર્સ',
-          'સંતરા અથવા મોસંબીનો જ્યૂસ – 1 ગ્લાસ'
-        ],
-        'Dinner': [
-          'ગ્રીલ્ડ ચિકન + શાકભાજી સૂપ – 100g + 1 બાઉલ',
-          'ગ્રીલ્ડ પનીર + ટમેટા સૂપ – 100g + 1 બાઉલ',
-          'દાળ + રોટલી + સલાડ – 1 બાઉલ + 2 રોટલી + 1 બાઉલ',
-          'બેકડ ફિશ + સ્ટીમ્ડ શાકભાજી – 100g + 1 બાઉલ',
-          'એગ ભુરજી + મલ્ટિગ્રેઇન રોટલી – 2 ઇંડા + 2 રોટલી',
-          'પાલક સૂપ + મલ્ટિગ્રેઇન બ્રેડ – 1 બાઉલ + 2 સ્લાઇસ',
-          'ઘી સાથે મૂંગ દાળ ખીચડી – 1 બાઉલ',
-          'ટોફુ + સ્ટિર-ફ્રાય શાકભાજી + બ્રાઉન રાઇસ – 100g + 1 બાઉલ',
-          'ઓલિવ ઓઇલ ડ્રેસિંગ સાથે ચિકન સલાડ – 1 બાઉલ',
-          'વેજીટેબલ સ્ટ્યૂ + બ્રાઉન રાઇસ – 1 બાઉલ + 1 બાઉલ'
-        ]
-      };
+      var mealKeys = [
+        'WakeUp',
+        'AfterWakeUp',
+        'Breakfast',
+        'MidMorning',
+        'Lunch',
+        'AfterLunch',
+        'Evening4',
+        'Dinner',
+        'BeforeSleep'
+      ];
 
-      var mealKeys = ['Breakfast', 'Morning Snack', 'Lunch', 'Afternoon Snack', 'Dinner'];
       var mealLabelsByLang = {
         en: {
-          'Breakfast': 'Breakfast',
-          'Morning Snack': 'Morning Snack',
+          'WakeUp': 'Wake Up (Immediately)',
+          'AfterWakeUp': 'After Wake Up (30 min)',
+          'Breakfast': 'Morning Breakfast',
+          'MidMorning': 'Mid Morning',
           'Lunch': 'Lunch',
-          'Afternoon Snack': 'Afternoon Snack',
-          'Dinner': 'Dinner'
+          'AfterLunch': 'After Lunch (30 min)',
+          'Evening4': 'Evening 4:00 PM',
+          'Dinner': 'Dinner',
+          'BeforeSleep': 'Before Sleep (10 min)'
         },
         gu: {
-          'Breakfast': 'સવારનો નાસ્તો',
-          'Morning Snack': 'મધ્ય સવારનો નાસ્તો',
-          'Lunch': 'બપોરનું ભોજન',
-          'Afternoon Snack': 'સાંજનો નાસ્તો',
-          'Dinner': 'રાત્રી ભોજન'
+          'WakeUp': 'સવારે જાગીને તરત',
+          'AfterWakeUp': 'જાગીને અડધી કલાક પછી',
+          'Breakfast': 'સવાર નો નાસ્તો',
+          'MidMorning': 'મીડ મોરનીંગ',
+          'Lunch': 'બપોરે જમવામાં',
+          'AfterLunch': 'જમ્યા ના અડધી કલાક પછી',
+          'Evening4': 'સાંજે ૪:૦૦ કલાકે',
+          'Dinner': 'સાંજે જમવામાં',
+          'BeforeSleep': 'રાત્રે સુવાના 10 min પહેલા'
+        },
+        auto: {
+          'WakeUp': 'Savare jagine tarat',
+          'AfterWakeUp': 'Jagine adadhi kalak pachi',
+          'Breakfast': 'Savar no nasto',
+          'MidMorning': 'Mid morning',
+          'Lunch': 'Bapore jamvama',
+          'AfterLunch': 'Jamya na adadhi kalak pachi',
+          'Evening4': 'Sanje 4:00 kalake',
+          'Dinner': 'Sanje jamvama',
+          'BeforeSleep': 'Ratre suvana 10 min pela'
         }
       };
+
+      // English translations of each Gujarati option
+      var dietByMeal = {
+        'WakeUp': [
+          '1/2 tsp whole Coriander + 5-7 Fennel seeds (1 pinch) + Dry Fenugreek + 1 pinch Carom (soak overnight in 1 glass of water); in the morning, heat, strain, and drink.',
+          '1/2 tsp whole Coriander + 5-7 Dry Fenugreek seeds + 1 pinch Carom (soak overnight in 1 glass of water); in the morning, heat, strain, and drink.',
+          '1 glass warm water + 1 tsp Apple Cider Vinegar; mix and drink.',
+          '1 glass warm water + 20 ml Aloe Vera juice.',
+          '1 glass normal water + 1 tsp Gulkand; mix and drink.',
+          '1/4 part Chia seeds (soak overnight in water); in the morning, mix into 1 glass warm water and drink.',
+          '5-7 Sweet Neem leaves (soak overnight in water); in the morning, heat, strain, and drink.',
+          '1 glass warm water + 1/4 part Triphala powder + 1 pinch Turmeric.',
+          '10 tsp whole Coriander + 8 tsp Fennel + 2 tsp Dry Fenugreek + 1/2 tsp Carom; roast and make powder (soak overnight in 1 glass of water), then in the morning heat, strain, and drink + 1 raw Turmeric piece.'
+        ],
+        'AfterWakeUp': [
+          '1/2 tsp Black Sesame (soak overnight in 1 bowl of water); in the morning, discard the water and chew/eat.',
+          '1/2 tsp Fennel seeds (soak overnight in 1 bowl of water); in the morning, discard the water and chew/eat.',
+          '1 tsp mixed seeds (Pumpkin + Watermelon + Sunflower) (soak overnight in 1 bowl of water); in the morning, discard the water and chew/eat.',
+          '5 Black Raisins (soak overnight in 1 bowl of water); in the morning, discard the water and chew/eat.',
+          '2 Figs (Anjeer) (soak overnight in 1 bowl of water); in the morning, discard the water and chew/eat.',
+          '1 Walnut (soak overnight in 1 bowl of water); in the morning, discard the water and chew/eat.'
+        ],
+        'Breakfast': [
+          '1 bowl roasted Makhana + 2 fruits (Pomegranate / Mosambi / Guava) + 4 steamed Bottle Gourd slices.',
+          '1 cup Black Coffee + 1 bowl roasted Makhana.',
+          '1 cup Tea (Sugar-Free) + 1 bowl roasted Makhana + 2 Khakhra.',
+          '3/4 tsp raw Oats + 1/4 part Chia seeds + 1 black Date (soak in milk/water overnight and keep in the fridge); in the morning add 1/2 tsp Makhana + Dry Fruit powder, blend, and drink.',
+          'Amla + Beetroot + Carrot (steamed) + Pomegranate + 3/4 Mint leaves; mix, make juice, and drink (1 glass).',
+          'Bottle Gourd + Sweet Neem + 3/4 Mint leaves (1 glass juice).',
+          '1 cup Milk + 1 black Date + 1 pinch Shatavari powder + 1 tsp Makhana + Dry Fruit powder; mix, blend, and drink.'
+        ],
+        'MidMorning': [
+          'Jaggery + Ginger + Lemon + Rock Salt powder + 3/4 Mint leaves + 1/4 part (Chia seeds / Sabja); mix and drink (1 glass lemon sherbet).',
+          '2 litres water (prepare at 9 AM and finish by 3 PM): 1 Sweet Neem twig + 1 Mint twig + 1 pinch whole Coriander + 1 pinch Fennel + 1 slice Beetroot (small piece) + 1 slice Apple.',
+          'Carrot + Beetroot + Amla (steamed) + 3/4 Mint leaves (1 glass juice).'
+        ],
+        'Lunch': [
+          '2 small Moong Dal pudla (Vegetables + 50 g Paneer).',
+          '2 small Oats pudla (Carrot + Beetroot + Paneer).',
+          '1 bowl steamed Vegetables + 50/100 g Paneer.',
+          '1 bowl Dalia Khichdi + (Carrot, Beetroot, Curd) raita + Pomegranate + Coriander (1 bowl).',
+          'Jowar/Maize/Ragi/Barley/Rajgira/Wheat roti (1/2) + 1 bowl gravy vegetable + 1 bowl Buttermilk.',
+          '1 bowl Veg Pulao.',
+          '1 bowl sprouted Moong / Moong Dal + Rice.'
+        ],
+        'AfterLunch': [
+          '1 glass warm water + 1/4 part Senna powder + 1 tsp Fennel seeds (chew and eat).'
+        ],
+        'Evening4': [
+          '1 glass warm water + 1/4 part (Chia seeds / Sabja) + (Jaljeera / Rock Salt) powder; mix and drink.',
+          '1 cup Black Coffee + 1 bowl roasted Makhana.',
+          '1 tsp Dark Chocolate + Peanut Butter.',
+          '1 cup Green Tea.',
+          '1 fruit + 1 handful Jaggery + Chana.'
+        ],
+        'Dinner': [
+          'Soup options: (Carrot + Spinach + Bottle Gourd + Drumstick), (Garlic + Coriander + Bottle Gourd), (Drumstick + Bottle Gourd), (Moong Dal + Bottle Gourd), (Gourd + Bottle Gourd).',
+          'Milk: 1 cup Milk + 1 black Date + 1 tsp Makhana + Dry Fruit powder; mix, blend, and drink.',
+          'Dalia Khichdi / Oats Khichdi / Spinach + Bottle Gourd + Moong Dal Khichdi / Oats pudla + Rava Idli (4).'
+        ],
+        'BeforeSleep': [
+          'Boil 2 glasses of water + 1 pinch Cumin + 1 pinch Carom + 1 pinch Fennel; reduce to 1/2 glass, strain, and drink.',
+          '1 glass warm water + 1 tsp raw Flax seeds; swallow with water.',
+          '1/4 part Triphala powder + 1/4 part Fennel powder; mix and drink with 1 glass warm water.',
+          '1 glass warm water + 1/4 part Haritaki powder + 1/4 part Fennel powder.',
+          '1 glass warm water + 20 ml Aloe Vera juice.',
+          '1 cup Milk + 1 tsp Turmeric + 1 tsp Ganthila powder + 1 pinch Shatavari powder + 1/2 tsp Gulkand; mix and drink.'
+        ]
+      };
+
+      // Gujarati options (same order as English)
+      var dietByMealGu = {
+        'WakeUp': [
+          '1/2 ચમચી આખા ધાણા + 5/7 દાણા (1-ચપટી) વરીયાળી, સૂકી મેથી + 1-ચપટી અજમો (રાત્રે 1 ગ્લાસ પાણીમાં પલાળવાનું). સવારે પાણી ગરમ કરી ગાળી ને પીવું.',
+          '1/2 ચમચી આખા ધાણા + 5/7 દાણા સૂકી મેથી + 1-ચપટી અજમો (રાત્રે 1 ગ્લાસ પાણીમાં પલાળવાનું). સવારે ગરમ કરી ગાળી ને પીવું.',
+          '1 ગ્લાસ ગરમ પાણી + 1 ચમચી એપલ સાઈડ વિનેગર મિશ્ર કરી પીવું.',
+          '1 ગ્લાસ ગરમ પાણી + 20ML એલોવેરા જ્યુસ.',
+          '1 ગ્લાસ નોર્મલ પાણી + 1 ચમચી ગુલકંદ મિશ્ર કરી પીવું.',
+          '1/4 ભાગ ચીધા સીડ્સ (રાત્રે પાણીમાં પલાળવાનું). સવારે 1 ગ્લાસ ગરમ પાણીમાં ચીધા સીડ્સ મિક્સ કરી પીવું.',
+          '5/7 મીઠો લીમડો (રાત્રે પાણીમાં પલાળવાનું). સવારે પાણી ગરમ કરી ગાળી ને પીવું.',
+          '1 ગ્લાસ ગરમ પાણી + 1/4 ભાગ ગીફળા પાવડર + 1 ચપટી હળદળ.',
+          '10 ચમચી આખા ધાણા + 8 ચમચી વરીયાળી + 2 ચમચી સૂકી મેથી + 1/2 ચમચી અજમો શેકીને પાવડર બનાવો (રાત્રે 1 ગ્લાસ પાણીમાં પલાળવાનું). સવારે પાણી ગરમ કરી ગાળીને પીવું + 1 પીળી હળદળનો ગાઠિયો.'
+        ],
+        'AfterWakeUp': [
+          '1/2 ચમચી કાળા તાલ (રાત્રે 1 વાટકી પાણીમાં સાથે પલાળવાનું). સવારે પાણી ફેંકી દેવું (ચાવી ને ખાવું).',
+          '1/2 ચમચી વરીયાળો (રાત્રે 1 વાટકી પાણીમાં સાથે પલાળવાનું). સવારે પાણી ફેંકી દેવું (ચાવી ને ખાવું).',
+          '1 ચમચી મિશ્ર સીડ્સ (પપકીન + વોટરમેલોન + સનફ્લાવર) (રાત્રે 1 વાટકી પાણીમાં સાથે પલાળવાનું). સવારે પાણી ફેંકી દેવું (ચાવી ને ખાવું).',
+          '5 કાળી દ્રાક્ષ (રાત્રે 1 વાટકી પાણીમાં સાથે પલાળવાનું). સવારે પાણી ફેંકી દેવું (ચાવી ને ખાવું).',
+          '2 અંજીર (રાત્રે 1 વાટકી પાણીમાં સાથે પલાળવાનું). સવારે પાણી ફેંકી દેવું (ચાવી ને ખાવું).',
+          '1 અખરોટ (રાત્રે 1 વાટકી પાણીમાં સાથે પલાળવાનું). સવારે પાણી ફેંકી દેવું (ચાવી ને ખાવું).'
+        ],
+        'Breakfast': [
+          '1 વાટકી શેકેલા મખાના + 2 ફ્રૂટ (દાકમ / મોસંબી / જમરૂખ) + 4 ચીર દૂધીની સ્ટીમ કરેલી.',
+          '1 કપ બ્લેક કોફી + 1 વાટકી શેકેલા મખાના.',
+          '1 કપ ચા (શુગર ફ્રી) + 1 વાટકી શેકેલા મખાના + 2 ખાખરા.',
+          '3/4 ચમચી રોણ ઓસ્ટ + 1/4 ભાગ ચીયા ચીડ્સ + 1 કાળો ખજૂર (રાત્રે દૂધ / પાણીમાં પલાળવાનું), ફ્રિજમાં મૂકવું. સવારે 1/2 ચમચી મખાના + દ્રાયફ્રૂટ પાવડર મિક્સ કરી બ્લેન્ડર કરી પીવું.',
+          'આમળા + બીટ + ગાજર (સ્ટીમ કરવું) + દાડમ + 3/4 ફુદીના પાન મિક્સ કરી જ્યુસ બનાવી પીવું (1 ગ્લાસ).',
+          'દૂધી + મીઠો લીમડો + 3/4 પાન કુદીનો (1 ગ્લાસ જ્યુસ).',
+          '1 કપ દૂધ + 1 કાળો ખજૂર + 1 ચપટી સતાવરી પાવડર + 1 ચમચી મખાના + દ્રાયફ્રૂટ પાવડર મિક્સ કરી બ્લેન્ડર કરી પીવું.'
+        ],
+        'MidMorning': [
+          'ગોળ + આદુ + લીબુ + સંચળ પાવડર + 3/4 પાન ફુદીનો + 1/4 ભાગ (ચીધા ચીડ્સ / તકમરીયા) મિશ્ર કરી પીવું (1 ગ્લાસ લીબુ સરબત).',
+          '2 લીટર પાણી (9 AM બનાવવું), 10 AM થી 3 PM સુધી પૂરું કરવું: 1 મીઠી લીમડાની ડાળખી + 1 ફુદીનાની ડાળખી + 1 ચપટી આખા ઘાણા + 1 ચપટી વરીયાળી + 1 ચીર બીટ (નાનો ટુકડો) + 1 ચીર સફરજન.',
+          'ગાજર + બીટ + આમળા (સ્ટીમ કરવું) + 3/4 પાન ફુદીનો (1 ગ્લાસ જ્યુસ).'
+        ],
+        'Lunch': [
+          'મગની દાળના નાના 2 પુદલા (વેજીટેબલ + 50 ગ્રામ પનીર).',
+          'ઓસ્ટના નાના 2 પુદલા (ગાજર + બીટ + પનીર).',
+          '1 બાઉલ વેજીટેબલ (સ્ટીમ કરેલું) + (50/100) ગ્રામ પનીર.',
+          'દલીયા ખીચડી (1 બાઉલ) + (ગાજર, બીટ, દહીં) નું રાખાટ + દાડમ + ધાણા (1 વાટડી).',
+          'જુવાર/મકાઈ/રાગી/જવ/રાજગરો/ઘઉંની રોટલી (1/2) + 1 વાટકી રસાવાળું શાક + 1 વાટકી છાસ.',
+          '1 બાઉલ (વેજી પુલાવ).',
+          '1 બાઉલ ફણગાવેલા મગ / મગની દાળ + ભાત.'
+        ],
+        'AfterLunch': [
+          '1 ગ્લાસ ગરમ પાણી + 1/4 ભાગ સોનામુખી પાવડર + 1 ચમચી વરીયાળી ચાવીને ખાવું.'
+        ],
+        'Evening4': [
+          '1 ગ્લાસ ગરમ પાણી + 1/4 ભાગ (ચિધા સીડ્સ / તકમરીયા) + (જલજીરા / સંચળ) પાવડર મિક્સ કરી લેવું.',
+          '1 કપ બ્લૅક કોફી + 1 વાટકો મખાના (શેકેલા).',
+          '1 ચમચી ડાર્ક ચોકલેટ + પીનર બટર.',
+          '1 કપ ગ્રીન ટી.',
+          '1 ફ્રુટ + 1 મુઠ્ઠી ગોળ + ચણા.'
+        ],
+        'Dinner': [
+          'સૂપ: (ગાજર + પાલક + દૂધી + સરગવો), (લસણ + ધાણા + દૂધી), (સરગવો + દૂધી), (મગની દાળ + દૂધી), (બોકરી + દૂધી).',
+          'દૂધ: 1 કપ દૂધ + 1 કાળો ખજૂર + 1 ચમચી માખાના + ડ્રાયફ્રુટ પાવડર મિશ્ર કરી બ્લેન્ડર કરી પીવું.',
+          'દલીયા ખીચડી / ઓસ્ટની ખીચડી / પાલક + દૂધી + મગની દાળની ખીચડી / ઓસ્ટના પુડલા + રવા ઈડલી (4).'
+        ],
+        'BeforeSleep': [
+          '2 ગ્લાસ પાણી ઉકાળવાનું + 1 ચપટી જીરુ + 1 ચપટી અજમો + 1 ચપટી વરીયાળી ઉકાળીને ½ ગ્લાસ કરવું. ગાળીને પીવું.',
+          '1 ગ્લાસ ગરમ પાણી + 1 ચમચી કાચી અળસી પાણી સાથે ગળી જવું.',
+          '1/4 ભાગ ગીફૂલા પાવડર + 1/4 ભાગ વરીયાળી પાવડર મિશ્ર કરી પીવું + 1 ગ્લાસ ગરમ પાણી સાથે લેવું.',
+          '1 ગ્લાસ ગરમ પાણી + 1/4 ભાગ ફરીતાડી પાવડર + 1/4 ભાગ વરિયાળી પાવડર.',
+          '1 ગ્લાસ ગરમ પાણી + 20 ML એલોવેરા જ્યુસ.',
+          '1 કપ દુધ + 1 ચમચી હળદર + 1 ચમચી ગાંઠીલા પાવડર + 1 ચપટી સતાવરી પાવડર + 1/2 ચમચી ગુલકંદ મિક્સ કરી લેવું.'
+        ]
+      };
+
+      function transliterateGujaratiToLatin(text) {
+        var map = {
+          'અ': 'a', 'આ': 'aa', 'ઇ': 'i', 'ઈ': 'ii', 'ઉ': 'u', 'ઊ': 'uu', 'ઋ': 'ru',
+          'એ': 'e', 'ઐ': 'ai', 'ઓ': 'o', 'ઔ': 'au',
+          'ક': 'k', 'ખ': 'kh', 'ગ': 'g', 'ઘ': 'gh', 'ઙ': 'ng',
+          'ચ': 'ch', 'છ': 'chh', 'જ': 'j', 'ઝ': 'jh', 'ઞ': 'ny',
+          'ટ': 't', 'ઠ': 'th', 'ડ': 'd', 'ઢ': 'dh', 'ણ': 'n',
+          'ત': 't', 'થ': 'th', 'દ': 'd', 'ધ': 'dh', 'ન': 'n',
+          'પ': 'p', 'ફ': 'ph', 'બ': 'b', 'ભ': 'bh', 'મ': 'm',
+          'ય': 'y', 'ર': 'r', 'લ': 'l', 'વ': 'v', 'શ': 'sh', 'ષ': 'sh', 'સ': 's', 'હ': 'h',
+          'ળ': 'l', 'ક્ષ': 'ksh', 'જ્ઞ': 'gn',
+          'ા': 'a', 'િ': 'i', 'ી': 'ii', 'ુ': 'u', 'ૂ': 'uu', 'ૃ': 'ru',
+          'ે': 'e', 'ૈ': 'ai', 'ો': 'o', 'ૌ': 'au',
+          'ં': 'n', 'ઃ': 'h', 'ઁ': 'n', '્': '',
+          '૦': '0', '૧': '1', '૨': '2', '૩': '3', '૪': '4', '૫': '5', '૬': '6', '૭': '7', '૮': '8', '૯': '9'
+        };
+        var out = '';
+        for (var i = 0; i < text.length; i++) {
+          var pair = text.substring(i, i + 2);
+          if (map[pair]) {
+            out += map[pair];
+            i++;
+            continue;
+          }
+          var ch = text[i];
+          out += map[ch] !== undefined ? map[ch] : ch;
+        }
+        return out.replace(/\s+/g, ' ').trim();
+      }
+
+      var dietByMealAuto = {};
+      mealKeys.forEach(function (mealKey) {
+        var list = dietByMealGu[mealKey] || [];
+        dietByMealAuto[mealKey] = list.map(function (line) {
+          return transliterateGujaratiToLatin(line);
+        });
+      });
 
       var i18n = {
         en: {
           langEnglish: 'English',
           langGujarati: 'Gujarati',
-          timeCol: 'Time',
-          deleteCol: 'Delete',
-          servingTime: 'Serving Time'
+          langAuto: 'Auto',
+          proteinPowderCheckLabel: 'How to make protein powder',
+          proteinPowderTitle: 'How to Make Protein Powder',
+          proteinPowderDesc: '200g Makhana, 150g Walnuts, 200g Almonds, 50g Pistachios – roast and grind into powder.',
         },
         gu: {
           langEnglish: 'અંગ્રેજી',
           langGujarati: 'ગુજરાતી',
-          timeCol: 'સમય',
-          deleteCol: 'કાઢી નાખો',
-          servingTime: 'ભોજન સમય'
+          langAuto: 'ઓટો',
+          proteinPowderCheckLabel: 'પ્રોટીન પાવડર બનાવવાની રીત',
+          proteinPowderTitle: 'પ્રોટીન પાવડર બનાવવાની રીત',
+          proteinPowderDesc: '200 ગ્રામ મખાના, 150 ગ્રામ અખરોટ, 200 ગ્રામ બદામ, 50 ગ્રામ પિસ્તા શેકી ને પાવડર બનાવો.',
+        },
+        auto: {
+          langEnglish: 'English',
+          langGujarati: 'Gujarati',
+          langAuto: 'Auto',
+          proteinPowderCheckLabel: 'Protein powder banavavani rit',
+          proteinPowderTitle: 'Protein powder banavavani rit',
+          proteinPowderDesc: '200 gram makhana, 150 gram akhrot, 200 gram badam, 50 gram pista sheki ne powder banavo.',
         }
       };
 
-      var currentLang = 'en';
+      var currentLang = 'auto';
 
       var defaultRows = [
-        { meal: 'Breakfast', time: '07:00', dietIndex: 0 },
-        { meal: 'Morning Snack', time: '10:00', dietIndex: 0 },
+        { meal: 'WakeUp', time: '06:00', dietIndex: 0 },
+        { meal: 'AfterWakeUp', time: '06:30', dietIndex: 0 },
+        { meal: 'Breakfast', time: '08:00', dietIndex: 0 },
+        { meal: 'MidMorning', time: '10:30', dietIndex: 0 },
         { meal: 'Lunch', time: '13:00', dietIndex: 0 },
-        { meal: 'Afternoon Snack', time: '16:00', dietIndex: 0 },
-        { meal: 'Dinner', time: '19:00', dietIndex: 0 }
+        { meal: 'AfterLunch', time: '13:30', dietIndex: 0 },
+        { meal: 'Evening4', time: '16:00', dietIndex: 0 },
+        { meal: 'Dinner', time: '19:00', dietIndex: 0 },
+        { meal: 'BeforeSleep', time: '21:50', dietIndex: 0 }
       ];
 
       var form = document.getElementById('patientForm');
@@ -1146,6 +1296,10 @@
       var dietTableBody = document.getElementById('dietTableBody');
       var languageSelect = document.getElementById('languageSelect');
       var clinicLogo = 'https://drive.google.com/thumbnail?id=18jIr60W1zCcwByMZXv9ciqb8A_8Xpi7d&sz=w500';
+
+      if (languageSelect) {
+        languageSelect.value = 'auto';
+      }
 
       function t(key) {
         var pack = i18n[currentLang] || i18n.en;
@@ -1172,14 +1326,10 @@
 
       function applyTranslations() {
         document.documentElement.lang = currentLang === 'gu' ? 'gu' : 'en';
-
         document.querySelectorAll('[data-i18n]').forEach(function (el) {
           var key = el.getAttribute('data-i18n');
-          if (hasTranslation(key)) {
-            el.textContent = t(key);
-          }
+          if (hasTranslation(key)) el.textContent = t(key);
         });
-
         updateMealSelectTexts();
         updateDietSelectTexts();
       }
@@ -1204,7 +1354,7 @@
       }
 
       function buildDietSelect(meal, selectedIndex) {
-        var dietSource = currentLang === 'gu' ? dietByMealGu : dietByMeal;
+        var dietSource = currentLang === 'gu' ? dietByMealGu : (currentLang === 'auto' ? dietByMealAuto : dietByMeal);
         var opts = dietSource[meal] || dietSource['Breakfast'];
         var sel = document.createElement('select');
         sel.className = 'form-select form-select-sm diet-select';
@@ -1285,7 +1435,7 @@
       applyTranslations();
 
       languageSelect.addEventListener('change', function () {
-        currentLang = languageSelect.value === 'gu' ? 'gu' : 'en';
+        currentLang = languageSelect.value === 'gu' ? 'gu' : (languageSelect.value === 'auto' ? 'auto' : 'en');
         applyTranslations();
       });
 
@@ -1370,13 +1520,24 @@
           return;
         }
         syncPrint();
-        // Small delay lets browser fully paint before opening print dialog
-        // This avoids blank/slow PDF rendering issues
+        // Show or hide the print_section check_box_content based on checkbox
+        var showProtein = document.getElementById('checkDefault').checked;
+        var printSection = document.querySelector('.print_section');
+        var proteinDiv = printSection.querySelector('.check_box_content');
+        if (proteinDiv) {
+          if (showProtein) {
+            proteinDiv.classList.remove('d-none');
+          } else {
+            proteinDiv.classList.add('d-none');
+          }
+        }
         printBtn.disabled = true;
         printBtn.textContent = 'Preparing…';
         requestAnimationFrame(function () {
           requestAnimationFrame(function () {
             window.print();
+            // Restore visibility after print
+            if (proteinDiv) proteinDiv.classList.remove('d-none');
             printBtn.disabled = false;
             printBtn.textContent = 'Download / Print';
           });
