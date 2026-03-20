@@ -367,10 +367,10 @@
     @media print {
       @page {
         size: A4 portrait;
-        background-image: url("https://drive.google.com/thumbnail?id=18jIr60W1zCcwByMZXv9ciqb8A_8Xpi7d&sz=w500");
+        /* background-image: url("https://drive.google.com/thumbnail?id=18jIr60W1zCcwByMZXv9ciqb8A_8Xpi7d&sz=w500");
         background-repeat: no-repeat;
         background-position: center center;
-        background-size: 300px 300px;
+        background-size: 300px 300px; */
         /* margin: 0; */
       }
 
@@ -639,6 +639,25 @@
         font-weight: 500;
         color: #555;
         margin-bottom: 0px;
+      }
+
+      .weight-care-title {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        margin-top: 10px;
+      }
+
+      .weight-care-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px 22px;
+        padding-left: 18px;
+        margin-bottom: 0;
+      }
+
+      .weight-care-list li {
+        margin-bottom: 0;
       }
 
       /* SIGNATURE – always at bottom after content, never overlaps */
@@ -995,8 +1014,8 @@
     <div class="ps-content">
       <table class="ps-diet-table" id="printDietTable">
         <tr class="ps-col-hdr">
-          <td data-i18n="servingTime">Time & Meal</td>
-          <td data-i18n="printDietPlan">Diet Menu</td>
+          <td>Time & Meal</td>
+          <td>Diet Menu</td>
         </tr>
       </table>
     </div>
@@ -1004,6 +1023,11 @@
     <div class="check_box_content d-none">
       <h6 data-i18n="proteinPowderTitle"></h6>
       <p data-i18n="proteinPowderDesc"></p>
+    </div>
+
+    <div>
+      <h6 id="printWeightCareTitle" class="weight-care-title"></h6>
+      <ul id="printWeightCareList" class="weight-care-list"></ul>
     </div>
 
     <!-- SIGNATURE: blank space to sign by hand after printing -->
@@ -1272,6 +1296,66 @@
         });
       });
 
+      var weightCareTipsByLang = {
+        en: {
+          title: 'Care Tips to Avoid Weight Gain',
+          items: [
+            'Eat nutritious food.',
+            'Avoid junk / outside food.',
+            'Do not sleep immediately after eating.',
+            'Do not stay hungry for too long.',
+            'Eat every 2 to 3 hours.',
+            'Do not do crash dieting.',
+            'Exercise for 30 to 45 minutes daily.',
+            'Do not overeat at night.',
+            'Do not binge after staying hungry.',
+            'Pulses are okay, but limit them to 2 bowls.',
+            'Avoid incompatible food combinations.',
+            'Do not use TV or mobile while eating.',
+            'Include raw beetroot, onion, and cabbage.',
+            'Include tuvar dal and urad dal.',
+            'Include okra, brinjal, and papdi.',
+            'Avoid sticky, fermented, and bread-based foods.',
+            'Include sapota, pear, watermelon, and muskmelon.',
+            'Get 8 hours of sleep.',
+            'Get B-12 and D-3 tests done regularly.',
+            'Eat rotli made from gluten-free flours like barley, jowar, maize, ragi, and rajgara.'
+          ]
+        },
+        gu: {
+          title: 'વજન ન વધે તે માટે કાળજી',
+          items: [
+            'પૌષ્ટિક આહાર લેવો.',
+            'જંક ફૂડ (બહારનું) ન ખાવું.',
+            'જમ્યા પછી તરત જ ન સૂઈ જવું.',
+            'વધારે પ્રમાણમાં ભૂખ્યા ન રહેવું.',
+            'દર ૨ થી ૩ કલાકે જમવું.',
+            'ક્રેશ ડાયટિંગ ન કરવું.',
+            'રોજની ૩૦ થી ૪૫ મિનિટ કસરત કરવી.',
+            'રાત્રે વધારે પ્રમાણમાં આહાર ન લેવો.',
+            'ભૂખ્યા રહ્યા બાદ એક સાથે વધુ ન ખાઈ લેવું.',
+            'કઠોળ જમી શકાય પરંતુ ૨ વાટકીથી વધુ નહિ.',
+            'વિરુદ્ધ આહાર ન લેવો.',
+            'ટીવી, મોબાઇલ જમતી વખતે ન વાપરવું.',
+            'કાચી બીટ, કાંદો, કોબીઝ લેવા.',
+            'તુવેરદાળ, અડદદાળ લેવા.',
+            'ભીંડો, રીંગણ, પાપડી લેવા.',
+            'ચીકાશવાળું, આથાવાળું, બ્રેડવાળું ટાળવું.',
+            'ચીકુ, પેર, તરબૂચ, ખરબૂચા લેવા.',
+            'પૂરતી ઊંઘ કરવી, ૮ કલાકની.',
+            'સમયે સમયે B-12 અને D-3 નો રિપોર્ટ કરાવવો.',
+            'ગ્લૂટન ફ્રી લોટની રોટલી ખાવી (જઉ, જુવાર, મકાઈ, રાગી અને રાજગરો).'
+          ]
+        }
+      };
+
+      weightCareTipsByLang.auto = {
+        title: transliterateGujaratiToLatin(weightCareTipsByLang.gu.title),
+        items: weightCareTipsByLang.gu.items.map(function (line) {
+          return transliterateGujaratiToLatin(line);
+        })
+      };
+
       var i18n = {
         en: {
           langEnglish: 'English',
@@ -1348,12 +1432,37 @@
         });
       }
 
+      function updatePlaceholderTexts() {
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-placeholder');
+          if (hasTranslation(key)) el.setAttribute('placeholder', t(key));
+        });
+      }
+
+      function renderWeightCareTips() {
+        var content = weightCareTipsByLang[currentLang] || weightCareTipsByLang.en;
+        var titleEl = document.getElementById('printWeightCareTitle');
+        var listEl = document.getElementById('printWeightCareList');
+        if (!titleEl || !listEl) return;
+
+        titleEl.textContent = content.title;
+        listEl.innerHTML = '';
+
+        content.items.forEach(function (item) {
+          var li = document.createElement('li');
+          li.textContent = item;
+          listEl.appendChild(li);
+        });
+      }
+
       function applyTranslations() {
         document.documentElement.lang = currentLang === 'gu' ? 'gu' : 'en';
         document.querySelectorAll('[data-i18n]').forEach(function (el) {
           var key = el.getAttribute('data-i18n');
           if (hasTranslation(key)) el.textContent = t(key);
         });
+        updatePlaceholderTexts();
+        renderWeightCareTips();
         updateMealSelectTexts();
         updateDietSelectTexts();
       }
