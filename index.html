@@ -685,19 +685,17 @@
         line-height: 18px;
       }
 
-      /* SIGNATURE – always at bottom after content, never overlaps */
       .ps-signature-wrap {
         display: flex;
         justify-content: flex-start;
         position: relative;
         z-index: 2;
         page-break-inside: avoid;
-        margin-bottom: 20px;
       }
 
       .ps-signature {
         text-align: left;
-        width: 200px;
+        width: 350px;
       }
 
       .ps-sig-space {
@@ -846,6 +844,19 @@
         content: 'Time';
       }
 
+      .table tr.diet-sub-row td:nth-child(1)::before {
+        content: '';
+      }
+
+      .table tr.diet-sub-row td:nth-child(1) {
+        display: none;
+      }
+
+      .table tr.diet-sub-row td:nth-child(3)::before,
+      .table tr.diet-sub-row td:nth-child(4)::before {
+        content: '';
+      }
+
       .table td:nth-child(2)::before {
         content: 'Diet Plan';
       }
@@ -873,6 +884,22 @@
       .table td:nth-child(4) .add-row-btn {
         width: 100%;
         min-width: 0;
+      }
+
+      .table tr.diet-sub-row td:nth-child(3) {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+        padding-top: 8px;
+      }
+
+      .table tr.diet-sub-row td:nth-child(3) .delete-row-btn {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .table tr.diet-sub-row td:nth-child(4) {
+        display: none;
       }
 
       .table td.text-center {
@@ -923,11 +950,11 @@
 
         <p class="mb-0 text-white">
           Fit Iconic Fitness Center is dedicated to helping individuals achieve a healthier and stronger lifestyle
-          through the perfect balance of fitness and nutrition. Led by <span class="fw-medium">Jigisha Viradiya</span>,
-          a Nutrition
-          Diet &amp; Fitness Expert and certified ZIN Zumba Instructor, the center focuses on personalized guidance,
-          effective workout routines, and balanced diet plans to support long-term wellness. Our goal is to motivate and
-          guide every member toward building confidence, strength, and sustainable healthy habits.
+          through the perfect balance of fitness and nutrition. Led by <span class="fw-medium">Jigisha Viradiya</span> –
+          Diet Advisor, Nutrition Advisor, International Yoga Trainer, Fitness Expert, International ZIN Zumba
+          Instructor, Pilates Instructor, and Face Yoga Expert – the center focuses on personalized guidance, effective
+          workout routines, and balanced diet plans to support long-term wellness, helping every member build
+          confidence, strength, and sustainable healthy habits.
         </p>
       </div>
     </div>
@@ -1098,11 +1125,9 @@
       <div class="ps-signature">
         <div class="ps-sig-space"></div>
         <div class="ps-sig-name">Jigisha Viradiya</div>
-        <div class="ps-sig-role">Nutrition Diet &amp; Fitness Expert</div>
-        <div class="ps-sig-role">Zin Zumba Instructor</div>
+        <div class="ps-sig-role">Diet advisor, nutrition advisor, international yoga trainer, fitness expert , international zin zumba instructor, pilates instructor, face yoga expert</div>
       </div>
     </div>
-
     <div class="ps-contact">
       <div class="ps-contact-row">
         <div class="ps-ci-texts">+91 98259 28378</div>
@@ -1123,8 +1148,8 @@
         </div>
       </div>
       <div class="ps-contact-row">
-        <div class="ps-ci-texts">3, Nagnath Socaity, 2nd Floor, Nr. Avalon Business Hub, Ankur School To Ved Road, Aamba
-          Talavadi, Katargam, Surat-395 004
+        <div class="ps-ci-texts">3 nagnath society, 2nd floor near avalon business hub to rajhans flamingo,ved road amba
+          talavadi, Katargam,Surat-395004
         </div>
         <div class="ps-ci-icon">
           <svg viewBox="0 0 24 24">
@@ -1373,25 +1398,25 @@
           title: 'Care Tips to Prevent Weight Gain',
           items: [
             'Eat a nutritious diet.',
-            'Do not eat junk / outside food.',
-            'Do not sleep immediately after eating.',
-            'Do not stay hungry for too long.',
+            'Do not eat junk food (outside food).',
+            'Do not lie down immediately after eating.',
+            'Do not remain hungry for long periods.',
             'Eat every 2 to 3 hours.',
-            'Do not do crash dieting.',
+            'Do not follow crash diets.',
             'Exercise for 30 to 45 minutes daily.',
-            'Do not eat too much at night.',
-            'Do not overeat all at once after staying hungry.',
-            'Pulses can be eaten, but not more than 2 bowls.',
+            'Do not eat in excess at night.',
+            'Do not overeat all at once after staying hungry for long.',
+            'You may eat pulses, but not more than 2 bowls.',
             'Do not eat incompatible food combinations.',
             'Do not use TV or mobile while eating.',
             'Include raw beetroot, onion, and cabbage.',
             'Include tuvar dal and urad dal.',
             'Include okra, brinjal, and papdi.',
-            'Avoid greasy, fermented, and bread-based foods.',
-            'Include chikoo, pear, watermelon, and muskmelon.',
-            'Get enough sleep, about 8 hours.',
-            'Get B-12 and D-3 tests done from time to time.',
-            'Eat rotli made from flours such as jau, jowar, maize, ragi, and rajgara.'
+            'Avoid oily, fermented, and bread-based foods.',
+            'Include chikoo, guava, watermelon, and muskmelon.',
+            'Get proper sleep (about 8 hours).',
+            'Get B-12 and D-3 reports done from time to time.',
+            'Eat rotli made from gluten-free flour (jau, jowar, maize, ragi, and rajgara).'
           ]
         },
         gu: {
@@ -1399,24 +1424,24 @@
           items: [
             'પૌષ્ટિક આહાર લેવો.',
             'જંક ફૂડ (બહારનું) ન ખાવું.',
-            'જમ્યા પછી તરત જ ન સૂઈ જવું.',
+            'જમ્યા પછી તરત સૂઈ ના જવું.',
             'વધારે પ્રમાણમાં ભૂખ્યા ન રહેવું.',
             'દર ૨ થી ૩ કલાકે જમવું.',
             'ક્રેશ ડાયટિંગ ન કરવું.',
             'રોજની ૩૦ થી ૪૫ મિનિટ કસરત કરવી.',
             'રાત્રે વધારે પ્રમાણમાં આહાર ન લેવો.',
             'ભૂખ્યા રહ્યા બાદ એક સાથે વધુ ન ખાઈ લેવું.',
-            'કઠોળ જમી શકાય પરંતુ ૨ વાટકીથી વધુ નહિ.',
+            'કઠોળ ખાઈ શકાય, પરંતુ ૨ વાટકીથી વધુ નહિ.',
             'વિરુદ્ધ આહાર ન લેવો.',
             'ટીવી, મોબાઇલ જમતી વખતે ન વાપરવું.',
-            'કાચી બીટ, કાંદો, કોબીઝ લેવા.',
-            'તુવેરદાળ, અડદદાળ લેવા.',
-            'ભીંડો, રીંગણ, પાપડી લેવા.',
+            'કાચું બીટ, કાંદો, કોબીજ.',
+            'તુવેર દાળ, અડદ દાળ.',
+            'ભીંડો, રીંગણ, પાપડી.',
             'ચીકાશવાળું, આથાવાળું, બ્રેડવાળું ટાળવું.',
-            'ચીકુ, પેર, તરબૂચ, ખરબૂચા લેવા.',
+            'ચીકુ, પેરુ, તરબૂચ, ખલેલા',
             'પૂરતી ઊંઘ કરવી, ૮ કલાકની.',
             'સમયે સમયે B-12 અને D-3 નો રિપોર્ટ કરાવવો.',
-            'ગ્લૂટન ફ્રી લોટની રોટલી ખાવી (જઉ, જુવાર, મકાઈ, રાગી અને રાજગરો).'
+            'ગ્લૂટન-ફ્રી લોટની રોટલી ખાવી (જઉ, જુવાર, મકાઈ, રાગી અને રાજગરો).'
           ]
         }
       };
@@ -1578,27 +1603,111 @@
         td2.appendChild(buildDietSelect(newMeal, selectedIndex || 0));
       }
 
+      function isSubRow(row) {
+        return row.classList.contains('diet-sub-row');
+      }
+
+      function getRowContext(row) {
+        var mealSel = row.querySelector('.meal-label-select');
+        var timeInput = row.querySelector('input[type="time"]');
+        if (mealSel) {
+          return {
+            meal: mealSel.value || 'Breakfast',
+            time: timeInput ? timeInput.value : ''
+          };
+        }
+
+        var cursor = row.previousElementSibling;
+        while (cursor) {
+          var cursorMealSel = cursor.querySelector('.meal-label-select');
+          if (cursorMealSel) {
+            var cursorTimeInput = cursor.querySelector('input[type="time"]');
+            return {
+              meal: cursorMealSel.value || 'Breakfast',
+              time: cursorTimeInput ? cursorTimeInput.value : ''
+            };
+          }
+          cursor = cursor.previousElementSibling;
+        }
+
+        return { meal: 'Breakfast', time: '' };
+      }
+
+      function getFollowingSubRows(mainRow) {
+        var rows = [];
+        var cursor = mainRow.nextElementSibling;
+        while (cursor && isSubRow(cursor)) {
+          rows.push(cursor);
+          cursor = cursor.nextElementSibling;
+        }
+        return rows;
+      }
+
       function updateDietSelectTexts() {
         dietTableBody.querySelectorAll('tr').forEach(function (row) {
-          var mealSel = row.querySelector('.meal-label-select');
+          var rowContext = getRowContext(row);
           var dietSel = row.querySelector('.diet-select');
-          var meal = mealSel ? mealSel.value : 'Breakfast';
           var index = dietSel ? dietSel.selectedIndex : 0;
-          refreshDietSelect(row, meal, index);
+          refreshDietSelect(row, rowContext.meal, index);
         });
       }
 
+      function addMinutesToTime(timeValue, minutesToAdd) {
+        if (!timeValue) return '';
+        var parts = timeValue.split(':');
+        if (parts.length !== 2) return '';
+        var hours = Number(parts[0]);
+        var minutes = Number(parts[1]);
+        if (Number.isNaN(hours) || Number.isNaN(minutes)) return '';
+        var total = (hours * 60) + minutes + minutesToAdd;
+        var normalized = ((total % 1440) + 1440) % 1440;
+        var nextHours = Math.floor(normalized / 60);
+        var nextMinutes = normalized % 60;
+        return String(nextHours).padStart(2, '0') + ':' + String(nextMinutes).padStart(2, '0');
+      }
+
+      function syncNextMealTime(sourceRow, sourceMealKey, targetMealKey, minutesOffset) {
+        var sourceMealSel = sourceRow.querySelector('.meal-label-select');
+        var sourceTimeInput = sourceRow.querySelector('input[type="time"]');
+        if (!sourceMealSel || !sourceTimeInput) return;
+        if (sourceMealSel.value !== sourceMealKey || !sourceTimeInput.value) return;
+
+        var targetRow = null;
+        dietTableBody.querySelectorAll('tr').forEach(function (row) {
+          if (targetRow || row === sourceRow) return;
+          var mealSel = row.querySelector('.meal-label-select');
+          if (mealSel && mealSel.value === targetMealKey) {
+            targetRow = row;
+          }
+        });
+
+        if (!targetRow) return;
+        var targetTimeInput = targetRow.querySelector('input[type="time"]');
+        if (!targetTimeInput) return;
+        var nextTime = addMinutesToTime(sourceTimeInput.value, minutesOffset);
+        if (nextTime) targetTimeInput.value = nextTime;
+      }
+
       function buildRow(cfg) {
+        var subRow = !!cfg.isSubRow;
         var row = document.createElement('tr');
+        if (subRow) row.classList.add('diet-sub-row');
 
         var td1 = document.createElement('td');
-        var mealSel = buildMealSelect(cfg.meal || 'Breakfast');
-        var timeInput = document.createElement('input');
-        timeInput.type = 'time';
-        timeInput.className = 'form-control form-control-sm mt-1';
-        if (cfg.time) timeInput.value = cfg.time;
-        td1.appendChild(mealSel);
-        td1.appendChild(timeInput);
+        var mealSel = null;
+        var timeInput = null;
+
+        if (subRow) {
+          td1.innerHTML = '&nbsp;';
+        } else {
+          mealSel = buildMealSelect(cfg.meal || 'Breakfast');
+          timeInput = document.createElement('input');
+          timeInput.type = 'time';
+          timeInput.className = 'form-control form-control-sm mt-1';
+          if (cfg.time) timeInput.value = cfg.time;
+          td1.appendChild(mealSel);
+          td1.appendChild(timeInput);
+        }
 
         var td2 = document.createElement('td');
         td2.appendChild(buildDietSelect(cfg.meal || 'Breakfast', cfg.dietIndex || 0));
@@ -1613,36 +1722,69 @@
 
         var td4 = document.createElement('td');
         td4.className = 'text-center';
-        var addBtn = document.createElement('button');
-        addBtn.type = 'button';
-        addBtn.className = 'btn btn-sm btn-outline-primary add-row-btn';
-        addBtn.textContent = 'Add New Row';
-        td4.appendChild(addBtn);
+        var addBtn = null;
+        if (subRow) {
+          td4.innerHTML = '&nbsp;';
+        } else {
+          addBtn = document.createElement('button');
+          addBtn.type = 'button';
+          addBtn.className = 'btn btn-sm btn-outline-primary add-row-btn';
+          addBtn.textContent = 'Add New Row';
+          td4.appendChild(addBtn);
+        }
 
         row.appendChild(td1);
         row.appendChild(td2);
         row.appendChild(td3);
         row.appendChild(td4);
 
-        mealSel.addEventListener('change', function () {
-          refreshDietSelect(row, mealSel.value);
-        });
+        function syncLinkedMealTimes() {
+          if (!mealSel || !timeInput) return;
+          syncNextMealTime(row, 'WakeUp', 'AfterWakeUp', 30);
+          syncNextMealTime(row, 'Lunch', 'AfterLunch', 30);
+        }
+
+        if (mealSel && timeInput) {
+          mealSel.addEventListener('change', function () {
+            refreshDietSelect(row, mealSel.value);
+            getFollowingSubRows(row).forEach(function (subRowItem) {
+              var subDietSel = subRowItem.querySelector('.diet-select');
+              var subIndex = subDietSel ? subDietSel.selectedIndex : 0;
+              refreshDietSelect(subRowItem, mealSel.value, subIndex);
+            });
+            syncLinkedMealTimes();
+          });
+          timeInput.addEventListener('change', function () {
+            syncLinkedMealTimes();
+          });
+        }
+
         delBtn.addEventListener('click', function () {
+          var isMainRow = !isSubRow(row);
+          if (isMainRow && getFollowingSubRows(row).length > 0) {
+            alert('Delete extra diet rows of this time slot first.');
+            return;
+          }
           if (dietTableBody.querySelectorAll('tr').length > 1) {
             row.remove();
           } else {
             alert('At least one row is required.');
           }
         });
-        addBtn.addEventListener('click', function () {
-          var currentDietSelect = row.querySelector('.diet-select');
-          var cloneConfig = {
-            meal: mealSel.value || 'Breakfast',
-            time: timeInput.value || '08:00',
-            dietIndex: currentDietSelect ? currentDietSelect.selectedIndex : 0
-          };
-          row.insertAdjacentElement('afterend', buildRow(cloneConfig));
-        });
+
+        if (addBtn) {
+          addBtn.addEventListener('click', function () {
+            var rowContext = getRowContext(row);
+            var currentDietSelect = row.querySelector('.diet-select');
+            var cloneConfig = {
+              meal: rowContext.meal || 'Breakfast',
+              time: rowContext.time || '08:00',
+              isSubRow: true,
+              dietIndex: currentDietSelect ? currentDietSelect.selectedIndex : 0
+            };
+            row.insertAdjacentElement('afterend', buildRow(cloneConfig));
+          });
+        }
         return row;
       }
 
@@ -1698,11 +1840,10 @@
         var order = [];
 
         rows.forEach(function (row) {
-          var labelSel = row.querySelector('.meal-label-select');
-          var timeInput = row.querySelector('input[type="time"]');
+          var rowContext = getRowContext(row);
           var dietSel = row.querySelector('.diet-select');
-          var label = labelSel ? labelSel.value.trim() : 'Breakfast';
-          var timeStr = formatTime(timeInput ? timeInput.value : '');
+          var label = (rowContext.meal || 'Breakfast').trim();
+          var timeStr = formatTime(rowContext.time || '');
           var diet = dietSel ? dietSel.value.trim() : '-';
           if (!sections[label]) { sections[label] = []; order.push(label); }
           sections[label].push({ time: timeStr, diet: diet });
