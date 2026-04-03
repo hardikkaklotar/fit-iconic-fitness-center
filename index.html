@@ -1232,12 +1232,7 @@
           '10 tsp whole coriander + 8 tsp fennel seeds + 2 tsp fenugreek seeds + 1/2 tsp carom seeds; dry roast and make a powder, then soak overnight in 1 glass of water. In the morning, warm it, strain it, and drink + 1 piece of fresh turmeric root.'
         ],
         'AfterWakeUp': [
-          '1/2 tsp black sesame seeds',
-          '1/2 tsp fennel seeds',
-          '1 tsp mixed seeds (pumpkin + watermelon + sunflower)',
-          '5 black raisins',
-          '2 figs (anjeer)',
-          '1 walnut'
+          '1/2 tsp black sesame seeds, 1/2 tsp fennel seeds, 1 tsp mixed seeds (pumpkin + watermelon + sunflower), 5 black raisins, 2 figs (anjeer), 1 walnut (soak together overnight in 1 bowl of water) In the morning, discard the water and chew before eating.'
         ],
         'Breakfast': [
           '1 bowl roasted makhana + 2 fruits (pomegranate / mosambi / guava) + 4 steamed bottle gourd slices.',
@@ -1301,12 +1296,7 @@
           '10 ચમચી આખા ધાણા + 8 ચમચી વરીયાળી + 2 ચમચી સૂકી મેથી + 1/2 ચમચી અજમો શેકીને પાવડર બનાવો (રાત્રે 1 ગ્લાસ પાણીમાં પલાડવાનું ). સવારે પાણી ગરમ કરી ગાળીને પીવું + 1 પીળી હળદળનો ગાઠિયો.'
         ],
         'AfterWakeUp': [
-          '1/2 ચમચી કાળા તલ',
-          '1/2 ચમચી વરીયાળી',
-          '1 ચમચી મિશ્ર સીડ્સ (પમ્પકીન + વોટરમેલોન + સનફ્લાવર)',
-          '5 કાળી દ્રાક્ષ',
-          '2 અંજીર',
-          '1 અખરોટ'
+          '1/2 ચમચી કાળા તલ, 1/2 ચમચી વરીયાળી, 1 ચમચી મિશ્ર સીડ્સ (પમ્પકીન + વોટરમેલોન + સનફ્લાવર), 5 કાળી દ્રાક્ષ, 2 અંજીર, 1 અખરોટ (રાત્રે 1 વાટકી પાણીમાં સાથે પલાડવાનું ) સવારે પાણી ફેંકી દેવું (ચાવી ને ખાવું).'
         ],
         'Breakfast': [
           '1 વાટકી શેકેલા મખાના + 2 ફ્રૂટ (દાકમ / મોસંબી / જમરૂખ) + 4 ચીર દૂધીની સ્ટીમ કરેલી.',
@@ -1452,12 +1442,6 @@
         items: weightCareTipsByLang.gu.items.map(function (line) {
           return transliterateGujaratiToLatin(line);
         })
-      };
-
-      var afterWakeUpPrintNoteByLang = {
-        en: '(Soak overnight in 1 bowl of water). In the morning, discard the water and chew before eating.',
-        gu: '(રાત્રે 1 વાટકી પાણીમાં સાથે પલાડવાનું ). સવારે પાણી ફેંકી દેવું (ચાવી ને ખાવું)',
-        auto: '(Ratre 1 vatki panima sathe paladvanu). Savare pani phenki devu (chavi ne khavu)'
       };
 
       var i18n = {
@@ -1871,13 +1855,6 @@
             dr.innerHTML = '<td>' + item.time + '</td><td>' + item.diet + '</td>';
             table.appendChild(dr);
           });
-
-          if (label === 'AfterWakeUp') {
-            var nr = document.createElement('tr');
-            nr.className = 'ps-data-row';
-            nr.innerHTML = '<td>-</td><td>' + (afterWakeUpPrintNoteByLang[currentLang] || afterWakeUpPrintNoteByLang.en) + '</td>';
-            table.appendChild(nr);
-          }
 
           var sp = document.createElement('tr');
           sp.className = 'ps-spacer';
